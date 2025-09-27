@@ -1,8 +1,8 @@
-name: build pipline
+name: Deploy Application
 
 on:
   workflow_run:
-    workflows: ["Terraform"]    # Name of the infra workflow in infra repo
+    workflows: ["Terraform Infra"]    # Ye exact name hona chahiye jo terraform.yml me workflow ka name hai
     types:
       - completed
 
