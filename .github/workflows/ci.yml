@@ -28,3 +28,33 @@ jobs:
       with:
         name: build-output
         path: build   # The desired behavior if no files are found using the provided path.
+    
+    - name: Copy files to VM
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: ${{ secrets.VM_HOST }}         # VM IP ya hostname
+        username: ${{ secrets.VM_USER }}     # VM username
+        key: ${{ secrets.VM_SSH_KEY }}       # Private SSH key
+        port: 22
+        source: "build/*"
+        target: "/home/ubuntu/react-app"     # VM pe destination folder
+
+    - name: SSH commands to VM
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: ${{ secrets.VM_HOST }}
+        username: ${{ secrets.VM_USER }}
+        key: ${{ secrets.VM_SSH_KEY }}
+        port: 22
+        script: |
+          cd /home/ubuntu/react-app
+          # Optional: Install serve if not already installed
+          npm install -g serve
+          # Kill old process if running
+          if [ -f .pidfile ]; then
+            kill $(cat .pidfile) || true
+          fi
+          # Start new serve process
+          serve -s . -l 5000 &
+          echo $! > .pidfile
+          echo "Deployment completed! Visit http://<VM-IP>:5000"
