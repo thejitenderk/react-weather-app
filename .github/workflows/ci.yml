@@ -2,7 +2,7 @@ name: build pipline
 
 on:
   workflow_run:
-    workflows: ["terraform.yml"]    # Name of the infra workflow in infra repo
+    workflows: ["Terraform"]    # Name of the infra workflow in infra repo
     types:
       - completed
 
