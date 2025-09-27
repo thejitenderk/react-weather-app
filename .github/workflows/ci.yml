@@ -23,4 +23,4 @@ jobs:
       uses: actions/upload-artifact@v4.6.2
       with:
         name: build-output
-        path: ./dist    # The desired behavior if no files are found using the provided path.
+        path: ./build    # The desired behavior if no files are found using the provided path.
