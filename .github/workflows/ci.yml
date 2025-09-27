@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: 'App build'
     runs-on: ubuntu-latest
     steps:
