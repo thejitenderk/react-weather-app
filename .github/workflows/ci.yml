@@ -1,9 +1,14 @@
 name: build pipline
 
-on: workflow_dispatch
+on:
+  workflow_run:
+    workflows: ["terraform.yml"]    # Name of the infra workflow in infra repo
+    types:
+      - completed
 
 jobs:
   build:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: 'App build'
     runs-on: ubuntu-latest
     steps:
