@@ -18,8 +18,9 @@ jobs:
 
     - run: npm install
     - run: chmod +x ./scripts/deploy-for-production.sh
-      
 
-        
-
-    
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.6.2
+      with:
+        name: build-output
+        path: ./dist    # The desired behavior if no files are found using the provided path.
