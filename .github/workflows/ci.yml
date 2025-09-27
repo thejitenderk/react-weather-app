@@ -17,7 +17,7 @@ jobs:
         
 
     - run: npm install
-    - run: ././scripts/deploy-for-production.sh
+    - run: ./scripts/deploy-for-production.sh
       
 
         
