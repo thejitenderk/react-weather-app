@@ -1,0 +1,23 @@
+name: build pipline
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    name: 'App build'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v5.0.0
+
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v5.0.0
+
+    # - name: 'install depencies'
+    # - run: npm install
+    # - run: npm run build
+      
+
+        
+
+    
